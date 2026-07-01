@@ -1,0 +1,37 @@
+{
+  "headline": "Why Book Your Egypt Tour Package With Us?",
+  "eyebrow": "Why travellers love our tours",
+  "tripAdvisorHref": "https://www.tripadvisor.com/Search?q=Nourbelle+Tours+Egypt",
+  "ctaLabel": "Read More Reviews",
+  "ctaHref": "/why-nourbelle/reviews",
+  "reviews": [
+    {
+      "id": "r1",
+      "title": "Excellent trip",
+      "quote": "Excellent guidance from very experienced and knowledgeable guides. Transfers and hotels were smooth — we felt looked after every step of the way.",
+      "author": "JURGEN",
+      "rating": 5
+    },
+    {
+      "id": "r2",
+      "title": "Strongly recommend",
+      "quote": "We booked a custom Cairo & Nile itinerary. Communication was fast, pricing transparent, and the pacing of sightseeing was perfect for our family.",
+      "author": "MENDEL",
+      "rating": 4
+    },
+    {
+      "id": "r3",
+      "title": "Outstanding service",
+      "quote": "From the first email to the farewell at the airport, the team was professional, warm, and flexible when we wanted small changes on the ground.",
+      "author": "SARAH",
+      "rating": 5
+    },
+    {
+      "id": "r4",
+      "title": "Memorable Egypt journey",
+      "quote": "Temple visits with a passionate guide made all the difference. We never felt rushed, and the Dahabiya experience on the Nile was a highlight.",
+      "author": "DAVID",
+      "rating": 3
+    }
+  ]
+}
