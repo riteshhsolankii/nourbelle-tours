@@ -69,7 +69,7 @@ export function TourHero({ detail }: Props) {
   const hotelsCount = detail.hotelCards?.length ?? detail.accommodationItems?.length ?? 0;
 
   return (
-    <div className="mb-6 bg-[#F5F0EA] p-4 sm:p-6 md:mb-8">
+    <div className="mb-6 rounded-2xl bg-[#F5F0EA] p-4 sm:p-6 md:mb-8">
       <Breadcrumb items={detail.breadcrumbs} variant="inline" className="mb-3" />
       <h1 className="font-heading text-xl font-bold leading-tight tracking-tight text-[#0A0909] sm:text-2xl md:text-3xl lg:text-4xl">
         {detail.title}

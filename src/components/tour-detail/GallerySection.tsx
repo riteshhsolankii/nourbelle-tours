@@ -49,7 +49,7 @@ export function GallerySection({ images, onOpenLightbox }: Props) {
                 type="button"
                 onClick={() => onOpenLightbox(imgIndex)}
                 aria-label={`Show image ${imgIndex + 1}`}
-                className="relative aspect-square w-full overflow-hidden rounded-xl bg-zinc-100 outline-none ring-offset-2 focus-visible:ring-2 focus-visible:ring-[#41736D] lg:rounded-2xl"
+                className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-zinc-100 outline-none ring-offset-2 focus-visible:ring-2 focus-visible:ring-[#41736D] lg:rounded-2xl"
               >
                 <Image src={img.src} alt={img.alt} fill className="object-cover transition hover:scale-[1.02]" sizes="(max-width: 640px) 50vw, 20vw" />
                 {isLastVisible && remainingThumbCount > 0 ?
