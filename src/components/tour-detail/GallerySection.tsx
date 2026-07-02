@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 
 type GalleryImage = { src: string; alt: string };
 
@@ -11,9 +10,8 @@ type Props = {
 };
 
 export function GallerySection({ images, onOpenLightbox }: Props) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const hero = images[selectedIndex] ?? images[0];
-  const otherIndexes = images.map((_, i) => i).filter((i) => i !== selectedIndex);
+  const hero = images[0];
+  const otherIndexes = images.map((_, i) => i).filter((i) => i !== 0);
   const maxVisibleThumbs = 4;
   const visibleThumbIndexes = otherIndexes.slice(0, maxVisibleThumbs);
   const remainingThumbCount = otherIndexes.length - visibleThumbIndexes.length;
@@ -28,8 +26,8 @@ export function GallerySection({ images, onOpenLightbox }: Props) {
     <div className="space-y-2 sm:space-y-3">
       <button
         type="button"
-        onClick={() => onOpenLightbox(selectedIndex)}
-        className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-zinc-100 text-left outline-none ring-offset-2 focus-visible:ring-2 focus-visible:ring-[#41736D] sm:min-h-[320px] md:min-h-[400px] lg:rounded-2xl"
+        onClick={() => onOpenLightbox(0)}
+        className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-zinc-100 text-left outline-none ring-offset-2 focus-visible:ring-2 focus-visible:ring-[#41736D] sm:min-h-[200px] md:min-h-[260px] lg:rounded-2xl"
       >
         <Image
           src={hero.src}
@@ -49,7 +47,7 @@ export function GallerySection({ images, onOpenLightbox }: Props) {
               <button
                 key={`${img.src}-${imgIndex}`}
                 type="button"
-                onClick={() => setSelectedIndex(imgIndex)}
+                onClick={() => onOpenLightbox(imgIndex)}
                 aria-label={`Show image ${imgIndex + 1}`}
                 className="relative aspect-square w-full overflow-hidden rounded-xl bg-zinc-100 outline-none ring-offset-2 focus-visible:ring-2 focus-visible:ring-[#41736D] lg:rounded-2xl"
               >

@@ -25,7 +25,7 @@ function itineraryDays(n: number, prefix: string) {
   return Array.from({ length: n }, (_, i) => ({
     label: `Day ${i + 1}`,
     title: `${prefix} — day ${i + 1} highlights`,
-    body: "Licensed Egyptologist guiding, comfortable private transport, and time for photos at each site. Meals as per itinerary.",
+    body: "Licensed Egyptologist guiding.",
     overnight: i === 0 ? "Hotel in Cairo" : "Hotel as per itinerary",
     meals: "Meals included where noted each day",
   }));
@@ -301,10 +301,11 @@ export const multiDayTourDetails: Record<string, TourPackagePageDetail> = {
     itinerary: itineraryDays(8, "Legends"),
     placesToVisit: ["Cairo", "Luxor", "Edfu", "Kom Ombo", "Aswan"],
     gallery: [
-      { src: "/tours/8-days-legends.webp", alt: "8 Day Legends of Egypt Tour — main" },
+      { src: "/multi-day-tours/banner.webp", alt: "8 Day Legends of Egypt Tour — main" },
       { src: "/multi-day-tours/egypt-tour/cairo.webp", alt: "8 Day Legends of Egypt Tour — Cairo" },
       { src: "/multi-day-tours/egypt-tour/luxor.webp", alt: "8 Day Legends of Egypt Tour — Luxor" },
       { src: "/multi-day-tours/egypt-tour/aswan.webp", alt: "8 Day Legends of Egypt Tour — Aswan" },
+      { src: "/tours/8-days-legends.webp", alt: "8 Day Legends of Egypt Tour — pyramids" },
     ],
     hotelCards: [
       { name: "Cairo City Hotel", imageSrc: "/destinations/cairo.webp", imageAlt: "Hotel in Cairo near Islamic Cairo", stars: 4, location: "Cairo" },

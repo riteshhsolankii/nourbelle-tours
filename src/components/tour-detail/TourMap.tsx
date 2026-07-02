@@ -77,9 +77,10 @@ function useLeafletInstance(containerRef: React.RefObject<HTMLDivElement | null>
 
 type Props = {
   placesToVisit?: TourPackagePageDetail["placesToVisit"];
+  aspectClassName?: string;
 };
 
-export function TourMap({ placesToVisit }: Props) {
+export function TourMap({ placesToVisit, aspectClassName = "aspect-[4/3]" }: Props) {
   const [fullscreenOpen, setFullscreenOpen] = useState(false);
   const inlineRef = useRef<HTMLDivElement | null>(null);
   const fullscreenRef = useRef<HTMLDivElement | null>(null);
@@ -99,7 +100,7 @@ export function TourMap({ placesToVisit }: Props) {
 
   if (points.length === 0) {
     return (
-      <div className="flex aspect-[4/3] w-full items-center justify-center rounded-xl bg-[#0A09090D] text-center text-xs text-[#0A0909]/55 lg:rounded-2xl">
+      <div className={`flex ${aspectClassName} w-full items-center justify-center rounded-xl bg-[#0A09090D] text-center text-xs text-[#0A0909]/55 lg:rounded-2xl`}>
         Map unavailable for this tour.
       </div>
     );
@@ -107,7 +108,7 @@ export function TourMap({ placesToVisit }: Props) {
 
   return (
     <>
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-zinc-100 lg:rounded-2xl">
+      <div className={`relative ${aspectClassName} w-full overflow-hidden rounded-xl bg-zinc-100 lg:rounded-2xl`}>
         <div ref={inlineRef} className="absolute inset-0 z-0" />
         <button
           type="button"

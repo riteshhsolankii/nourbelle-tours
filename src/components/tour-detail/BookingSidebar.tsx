@@ -35,7 +35,7 @@ export function BookingSidebar({ detail, travelDate, onTravelDateChange, minTrav
           <span className="text-2xl font-extrabold tracking-tight">{formatUsd(detail.sidebar.price)}</span>
           <span className="text-xs text-white/70">per person</span>
           {pct != null && pct > 0 ?
-            <span className="rounded-full bg-[#FFC9C980] px-2 py-0.5 text-xs font-semibold text-[#FF3A3A]">-{pct}%</span>
+            <span className="whitespace-nowrap rounded-full bg-[#FFE1E1] px-2.5 py-1 text-xs font-semibold leading-none text-[#E32C2C]">-{pct}%</span>
           : null}
         </div>
       </div>
