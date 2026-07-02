@@ -79,12 +79,6 @@ export function WhyTravelersLoveCard({
           <span className="text-xs font-medium text-[#0A0909]/70">{reviewCards?.length} reviews</span>
         </div>
       : null}
-      {reviewCards?.[0] ?
-        <div className="mt-4 border-t border-[#0A09091A] pt-4">
-          <p className="text-xs sm:text-sm italic leading-relaxed text-[#0A0909]/80">&ldquo;{reviewCards[0].body}&rdquo;</p>
-          <p className="mt-2 text-[11px] font-semibold tracking-[0.1em] text-[#0A0909]/50">— {reviewCards[0].author}</p>
-        </div>
-      : null}
     </div>
   );
 }
