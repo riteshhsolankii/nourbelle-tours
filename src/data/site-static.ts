@@ -249,7 +249,7 @@ export const multiDayToursHero = {
   title: "Private Egypt Tours & Nile Cruises Designed by Local Experts",
   subtitle:
     "Explore Cairo, Luxor, Aswan, the Nile, and the Red Sea with handpicked hotels, licensed Egyptologist guides, private transfers, and 24/7 local support.",
-  backgroundImageSrc: "/tours/multi-day-tours.webp",
+  backgroundImageSrc: "/tours/multi-day.webp",
   backgroundImageAlt: "The Great Sphinx and Pyramids of Giza at sunset",
   perks: [
     { label: "Licensed Guides", icon: "guide" as const },
