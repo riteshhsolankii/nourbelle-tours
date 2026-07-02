@@ -146,10 +146,7 @@ export function MultiDayTourDetailLayout({ detail }: Props) {
       <div className="min-w-0">
         <GallerySection images={images} onOpenLightbox={openLightbox} />
         <div className="mt-6">
-          <h3 className="font-heading text-sm font-bold text-[#0A0909] md:text-base">Route Map</h3>
-          <div className="mt-3">
-            <TourMap placesToVisit={detail.placesToVisit} />
-          </div>
+          <TourMap placesToVisit={detail.placesToVisit} aspectClassName="aspect-[16/9]" />
         </div>
       </div>
     </div>
@@ -169,9 +166,10 @@ export function MultiDayTourDetailLayout({ detail }: Props) {
           <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-start lg:gap-10">
             <div className="min-w-0 w-full">
               <TourHero detail={detail} />
-              <TourTabs activeTab={activeTab} onSelectTab={handleSelectTab} />
+              <div>
+                <TourTabs activeTab={activeTab} onSelectTab={handleSelectTab} />
 
-              <ScrollRevealSection key={activeTab}>
+                <ScrollRevealSection key={activeTab}>
                 <div className="mt-6 sm:mt-10">
                   {activeTab === "overview" ?
                     <div>
@@ -345,7 +343,8 @@ export function MultiDayTourDetailLayout({ detail }: Props) {
                     </div>
                   : null}
                 </div>
-              </ScrollRevealSection>
+                </ScrollRevealSection>
+              </div>
 
               <ScrollRevealSection>
                 <section className="mt-8 sm:mt-10 border-t border-[#0A09091A] pt-8 sm:pt-10 md:mt-12">
@@ -383,12 +382,6 @@ export function MultiDayTourDetailLayout({ detail }: Props) {
                   onTravelDateChange={setSidebarTravelDate}
                   minTravelDate={customizeMinFrom}
                 />
-              </ScrollRevealSection>
-
-              <ScrollRevealSection>
-                <div className="rounded-[10px] sm:rounded-[20px] bg-white p-5">
-                  <TourMap placesToVisit={detail.placesToVisit} />
-                </div>
               </ScrollRevealSection>
 
               <ScrollRevealSection>
