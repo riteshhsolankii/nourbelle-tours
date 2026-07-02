@@ -1,7 +1,7 @@
 "use client";
 
 import { CustomizeTourDatePicker } from "@/components/tour-detail/CustomizeTourDatePicker";
-import { IconChevronDown } from "@/components/layout/icons";
+import { PillSelect } from "@/components/common/PillSelect";
 import type { DatePriceSort } from "@/components/nile-cruise-detail/nile-detail-utils";
 import { formatUsdFull } from "@/components/nile-cruise-detail/nile-detail-utils";
 import type { TourPackagePageDetail } from "@/types/tour-package-detail";
@@ -41,20 +41,18 @@ export function NileCruiseDatePriceSection({
             minDate={customizeMinFrom}
           />
         </div>
-        <label className="relative inline-flex h-11 w-full shrink-0 items-center self-stretch rounded-lg bg-[#F5F5F5] sm:w-auto sm:self-auto">
-          <select
-            value={dateSort}
-            onChange={(e) => setDateSort(e.target.value as DatePriceSort)}
-            className="h-full appearance-none bg-transparent pl-4 pr-10 text-xs sm:text-sm text-[#0A0909] outline-none"
-            aria-label="Sort departures"
-          >
-            <option value="startAsc">{detail.datePriceSortLabel ?? "Start date (earliest)"}</option>
-            <option value="startDesc">Start date (latest)</option>
-            <option value="priceAsc">Price (low to high)</option>
-            <option value="priceDesc">Price (high to low)</option>
-          </select>
-          <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 size-2.5 -translate-y-1/2 text-[#0A0909]/50" />
-        </label>
+        <PillSelect
+          value={dateSort}
+          onChange={(v) => setDateSort(v as DatePriceSort)}
+          options={[
+            { value: "startAsc", label: detail.datePriceSortLabel ?? "Start date (earliest)" },
+            { value: "startDesc", label: "Start date (latest)" },
+            { value: "priceAsc", label: "Price (low to high)" },
+            { value: "priceDesc", label: "Price (high to low)" },
+          ]}
+          ariaLabel="Sort departures"
+          className="w-full shrink-0 self-stretch sm:w-56 sm:self-auto"
+        />
       </div>
       <div className="mt-6 overflow-hidden border-t border-[#0A09091A]">
         <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_190px] items-center gap-4 border-b border-[#0A09091A] py-4 text-sm font-semibold text-[#0A0909]">

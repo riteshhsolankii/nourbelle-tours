@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { TourPackageCard } from "@/components/common/TourPackageCard";
-import { IconChevronDown } from "@/components/layout/icons";
+import { PillSelect } from "@/components/common/PillSelect";
 import type { NileCruiseListingItem } from "@/types/nile-cruises-page";
 import type { BreadcrumbItem } from "@/types/site";
 
@@ -49,23 +49,13 @@ function NileFilterSelect({
   ariaLabel: string;
 }) {
   return (
-    <div className="relative sm:min-w-[10.5rem] max-w-full md:min-w-[11rem]">
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        aria-label={ariaLabel}
-        className="h-9 sm:h-11 w-full cursor-pointer appearance-none rounded-lg border border-[#E0E0E0] bg-white py-2 pl-3 pr-10 text-xs sm:text-sm font-medium text-black outline-none transition hover:border-[#D0D0D0] focus-visible:border-[#41736D] focus-visible:ring-2 focus-visible:ring-[#41736D]/25"
-      >
-        {options.map((o) => (
-          <option key={o.value} value={o.value}>
-            {o.label}
-          </option>
-        ))}
-      </select>
-      <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-black">
-        <IconChevronDown className="size-2.5" />
-      </span>
-    </div>
+    <PillSelect
+      value={value}
+      onChange={onChange}
+      options={options}
+      ariaLabel={ariaLabel}
+      className="sm:min-w-[10.5rem] max-w-full md:min-w-[11rem]"
+    />
   );
 }
 

@@ -83,13 +83,56 @@ export function ScrollableSectionNav({ items, activeSection, onNavigate, ariaLab
 
   if (variant === "underline") {
     return (
-      <div className={["sticky top-[61px] sm:top-[77px] md:top-[85px] lg:top-[89px] z-20 mt-6 border-b border-[#0A09091A] bg-white/95 backdrop-blur-sm md:mt-8", className].filter(Boolean).join(" ")}>
-        <div className="flex items-center gap-1">
-          <NavArrow direction="prev" disabled={!canPrev} onClick={() => scrollTabs(-1)} label="Scroll section tabs left" />
+      <div className={["mt-6 md:mt-8", className].filter(Boolean).join(" ")}>
+        <div className="sticky top-[61px] sm:top-[77px] md:top-[85px] lg:top-[89px] z-20 border-b border-[#0A09091A] bg-white/95 backdrop-blur-sm">
+          <div className="flex items-center gap-1">
+            <NavArrow direction="prev" disabled={!canPrev} onClick={() => scrollTabs(-1)} label="Scroll section tabs left" />
+            <nav
+              ref={scrollerRef}
+              aria-label={ariaLabel}
+              className="flex min-w-0 flex-1 gap-3 overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-4 [&::-webkit-scrollbar]:hidden"
+            >
+              {items.map(({ domId, label }) => (
+                <a
+                  key={domId}
+                  href={`#${domId}`}
+                  data-section-id={domId}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate(domId);
+                  }}
+                  className={[
+                    "shrink-0 whitespace-nowrap border-b-2 py-3 text-xs font-medium transition sm:text-sm",
+                    activeSection === domId ?
+                      "border-[#B98B3E] text-[#0A0909]"
+                    : "border-transparent text-[#0A0909]/55 hover:text-[#0A0909]",
+                  ].join(" ")}
+                >
+                  {label}
+                </a>
+              ))}
+            </nav>
+            <NavArrow direction="next" disabled={!canNext} onClick={() => scrollTabs(1)} label="Scroll section tabs right" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={["mt-6 md:mt-8", className].filter(Boolean).join(" ")}>
+      <div className="sticky top-[61px] sm:top-[77px] md:top-[85px] lg:top-[89px] z-20">
+        <div className="flex items-center gap-0.5 rounded-full border border-[#0A09091A] bg-white p-1 backdrop-blur-sm sm:gap-1 sm:p-2">
+          <NavArrow
+            direction="prev"
+            disabled={!canPrev}
+            onClick={() => scrollTabs(-1)}
+            label="Scroll section tabs left"
+          />
           <nav
             ref={scrollerRef}
             aria-label={ariaLabel}
-            className="flex min-w-0 flex-1 gap-5 overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-7 [&::-webkit-scrollbar]:hidden"
+            className="flex min-w-0 flex-1 gap-1 overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {items.map(({ domId, label }) => (
               <a
@@ -101,62 +144,23 @@ export function ScrollableSectionNav({ items, activeSection, onNavigate, ariaLab
                   onNavigate(domId);
                 }}
                 className={[
-                  "shrink-0 whitespace-nowrap border-b-2 py-3 text-xs font-medium transition sm:text-sm",
+                  "shrink-0 rounded-full px-3 py-2.5 font-heading text-xs font-semibold transition sm:px-4 sm:text-sm",
                   activeSection === domId ?
-                    "border-[#B98B3E] text-[#0A0909]"
-                  : "border-transparent text-[#0A0909]/55 hover:text-[#0A0909]",
+                    "bg-[#0A09090D] text-[#0A0909]"
+                  : "text-[#0A0909] hover:bg-[#0A09090D]",
                 ].join(" ")}
               >
                 {label}
               </a>
             ))}
           </nav>
-          <NavArrow direction="next" disabled={!canNext} onClick={() => scrollTabs(1)} label="Scroll section tabs right" />
+          <NavArrow
+            direction="next"
+            disabled={!canNext}
+            onClick={() => scrollTabs(1)}
+            label="Scroll section tabs right"
+          />
         </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className={["sticky top-[61px] sm:top-[77px] md:top-[85px] lg:top-[89px] z-20 mt-6 md:mt-8", className].filter(Boolean).join(" ")}>
-      <div className="flex items-center gap-0.5 rounded-full border border-[#0A09091A] bg-white p-1 backdrop-blur-sm sm:gap-1 sm:p-2">
-        <NavArrow
-          direction="prev"
-          disabled={!canPrev}
-          onClick={() => scrollTabs(-1)}
-          label="Scroll section tabs left"
-        />
-        <nav
-          ref={scrollerRef}
-          aria-label={ariaLabel}
-          className="flex min-w-0 flex-1 gap-1 overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {items.map(({ domId, label }) => (
-            <a
-              key={domId}
-              href={`#${domId}`}
-              data-section-id={domId}
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate(domId);
-              }}
-              className={[
-                "shrink-0 rounded-full px-3 py-2.5 font-heading text-xs font-semibold transition sm:px-4 sm:text-sm",
-                activeSection === domId ?
-                  "bg-[#0A09090D] text-[#0A0909]"
-                : "text-[#0A0909] hover:bg-[#0A09090D]",
-              ].join(" ")}
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
-        <NavArrow
-          direction="next"
-          disabled={!canNext}
-          onClick={() => scrollTabs(1)}
-          label="Scroll section tabs right"
-        />
       </div>
     </div>
   );

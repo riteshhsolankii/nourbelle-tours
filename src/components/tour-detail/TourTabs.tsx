@@ -7,10 +7,10 @@ export const MULTI_DAY_TABS: { domId: string; label: string }[] = [
   { domId: "inclusions", label: "Inclusions" },
   { domId: "exclusions", label: "Exclusions" },
   { domId: "hotels", label: "Hotels" },
+  { domId: "dateAndPrice", label: "Date & Price" },
   { domId: "map", label: "Map" },
   { domId: "reviews", label: "Reviews" },
   { domId: "faq", label: "FAQ" },
-  { domId: "addons", label: "Optional Add-ons" },
 ];
 
 export type MultiDayTabId = (typeof MULTI_DAY_TABS)[number]["domId"];

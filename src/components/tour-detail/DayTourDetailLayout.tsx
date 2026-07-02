@@ -13,7 +13,7 @@ import { ScrollRevealSection } from "@/components/common/ScrollRevealSection";
 import { ContactCtaSection } from "../common/ContactCtaSection";
 import { ScrollableSectionNav } from "@/components/common/ScrollableSectionNav";
 import { CustomizeTourDatePicker } from "@/components/tour-detail/CustomizeTourDatePicker";
-import { IconChevronDown } from "@/components/layout/icons";
+import { PillSelect } from "@/components/common/PillSelect";
 import { homeContactCta } from "@/data/site-static";
 import {
   SECTION_NAV,
@@ -40,6 +40,32 @@ type Props = {
   detail: TourPackagePageDetail;
 };
 
+const SIDEBAR_ADULTS_OPTIONS = [
+  { value: "1", label: "1 Adult" },
+  { value: "2", label: "2 Adults" },
+  { value: "3", label: "3 Adults" },
+  { value: "4+", label: "4+ Adults" },
+];
+
+const SIDEBAR_TRAVEL_DATE_OPTIONS = [
+  { value: "", label: "Select date" },
+  { value: "Dec 2026", label: "Dec 2026" },
+  { value: "Jan 2027", label: "Jan 2027" },
+];
+
+const CUSTOMIZE_NATIONALITY_OPTIONS = [
+  { value: "", label: "Select your nationality" },
+  { value: "United States", label: "United States" },
+  { value: "United Kingdom", label: "United Kingdom" },
+  { value: "Other", label: "Other" },
+];
+
+const CUSTOMIZE_PHONE_CODE_OPTIONS = [
+  { value: "+1", label: "+1" },
+  { value: "+44", label: "+44" },
+  { value: "+20", label: "+20" },
+];
+
 export function DayTourDetailLayout({ detail }: Props) {
   const [activeSection, setActiveSection] = useState<string>("tour-overview");
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -54,6 +80,10 @@ export function DayTourDetailLayout({ detail }: Props) {
   const [customizeFromDate, setCustomizeFromDate] = useState("");
   const [customizeToDate, setCustomizeToDate] = useState("");
   const [customizeAdults, setCustomizeAdults] = useState(2);
+  const [customizeNationality, setCustomizeNationality] = useState("");
+  const [customizePhoneCode, setCustomizePhoneCode] = useState("+1");
+  const [sidebarAdults, setSidebarAdults] = useState("1");
+  const [sidebarTravelDate, setSidebarTravelDate] = useState("");
 
   const customizeMinFrom = useMemo(() => {
     const d = new Date();
@@ -488,20 +518,18 @@ export function DayTourDetailLayout({ detail }: Props) {
                     minDate={customizeMinFrom}
                   />
                 </div>
-                <label className="relative inline-flex h-11 w-full shrink-0 items-center self-stretch rounded-lg bg-[#F5F5F5] sm:w-auto sm:self-auto">
-                  <select
-                    value={dateSort}
-                    onChange={(e) => setDateSort(e.target.value as DatePriceSort)}
-                    className="h-full appearance-none bg-transparent pl-4 pr-10 text-xs sm:text-sm text-[#0A0909] outline-none"
-                    aria-label="Sort dates"
-                  >
-                    <option value="startAsc">{detail.datePriceSortLabel ?? "Start date (earliest)"}</option>
-                    <option value="startDesc">Start date (latest)</option>
-                    <option value="priceAsc">Price (low to high)</option>
-                    <option value="priceDesc">Price (high to low)</option>
-                  </select>
-                  <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 size-2.5 -translate-y-1/2 text-[#0A0909]/45" />
-                </label>
+                <PillSelect
+                  value={dateSort}
+                  onChange={(v) => setDateSort(v as DatePriceSort)}
+                  options={[
+                    { value: "startAsc", label: detail.datePriceSortLabel ?? "Start date (earliest)" },
+                    { value: "startDesc", label: "Start date (latest)" },
+                    { value: "priceAsc", label: "Price (low to high)" },
+                    { value: "priceDesc", label: "Price (high to low)" },
+                  ]}
+                  ariaLabel="Sort dates"
+                  className="w-full shrink-0 self-stretch sm:w-56 sm:self-auto"
+                />
               </div>
               <div className="mt-6 overflow-hidden border-t border-[#0A09091A]">
                 <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_190px] gap-4 border-b border-[#0A09091A] py-4 items-center text-sm font-semibold text-[#0A0909]">
@@ -694,24 +722,23 @@ export function DayTourDetailLayout({ detail }: Props) {
                   <p className="mt-0.5 text-sm font-semibold text-[#0A0909]">{detail.sidebar.tourType}</p>
                 </div>
               </div>
-              <label className="mt-4 block text-xs font-medium text-[#0A0909]">Adults</label>
-              <div className="relative mt-1.5">
-                <select className="h-11 w-full appearance-none rounded-lg border border-[#E0E0E0] bg-white px-3 pr-9 text-xs sm:text-sm outline-none focus:border-[#41736D]">
-                  <option>1 Adult</option>
-                  <option>2 Adults</option>
-                  <option>3 Adults</option>
-                  <option>4+ Adults</option>
-                </select>
-                <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 size-2.5 -translate-y-1/2 text-[#0A0909]/45" />
+              <div className="mt-4">
+                <PillSelect
+                  label="Adults"
+                  value={sidebarAdults}
+                  onChange={setSidebarAdults}
+                  options={SIDEBAR_ADULTS_OPTIONS}
+                  ariaLabel="Adults"
+                />
               </div>
-              <label className="mt-3 block text-xs font-medium text-[#0A0909]">Travel date</label>
-              <div className="relative mt-1.5">
-                <select className="h-11 w-full appearance-none rounded-lg border border-[#E0E0E0] bg-white px-3 pr-9 text-xs sm:text-sm outline-none focus:border-[#41736D]">
-                  <option>Select date</option>
-                  <option>Dec 2026</option>
-                  <option>Jan 2027</option>
-                </select>
-                <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 size-2.5 -translate-y-1/2 text-[#0A0909]/45" />
+              <div className="mt-3">
+                <PillSelect
+                  label="Travel date"
+                  value={sidebarTravelDate}
+                  onChange={setSidebarTravelDate}
+                  options={SIDEBAR_TRAVEL_DATE_OPTIONS}
+                  ariaLabel="Travel date"
+                />
               </div>
               <div className="mt-4 flex gap-2">
                 <Link
@@ -757,24 +784,22 @@ export function DayTourDetailLayout({ detail }: Props) {
                   placeholder="E-mail"
                   className="h-11 w-full rounded-lg border border-[#E0E0E0] px-3 text-xs sm:text-sm outline-none focus:border-[#41736D]"
                 />
-                <div className="relative">
-                  <select className="h-11 w-full appearance-none rounded-lg border border-[#E0E0E0] bg-white px-3 pr-9 text-xs sm:text-sm outline-none focus:border-[#41736D]">
-                    <option value="">Select your nationality</option>
-                    <option>United States</option>
-                    <option>United Kingdom</option>
-                    <option>Other</option>
-                  </select>
-                  <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 size-2.5 -translate-y-1/2 text-[#0A0909]/45" />
-                </div>
+                <PillSelect
+                  name="nationality"
+                  value={customizeNationality}
+                  onChange={setCustomizeNationality}
+                  options={CUSTOMIZE_NATIONALITY_OPTIONS}
+                  ariaLabel="Nationality"
+                />
                 <div className="flex gap-2">
-                  <div className="relative w-[5.5rem] shrink-0">
-                    <select className="h-11 w-full appearance-none rounded-lg border border-[#E0E0E0] bg-white px-2 pr-9 text-xs outline-none focus:border-[#41736D]">
-                      <option>+1</option>
-                      <option>+44</option>
-                      <option>+20</option>
-                    </select>
-                    <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 size-2.5 -translate-y-1/2 text-[#0A0909]/45" />
-                  </div>
+                  <PillSelect
+                    name="phoneCode"
+                    value={customizePhoneCode}
+                    onChange={setCustomizePhoneCode}
+                    options={CUSTOMIZE_PHONE_CODE_OPTIONS}
+                    ariaLabel="Country code"
+                    className="w-[5.5rem] shrink-0"
+                  />
                   <input name="phone" placeholder="Phone" className="h-11 min-w-0 flex-1 rounded-lg border border-[#E0E0E0] px-3 text-xs sm:text-sm outline-none focus:border-[#41736D]" />
                 </div>
                 <div className="grid grid-cols-2 gap-2">

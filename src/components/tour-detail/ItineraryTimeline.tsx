@@ -28,13 +28,12 @@ export function ItineraryTimeline({ itinerary, placesToVisit }: Props) {
               >
                 <TargetMarkerIcon />
               </span>
-              <div className="min-w-0 flex-1 pb-1">
-                <p>
-                  <span className="text-xs font-semibold text-[#0A0909]/55">{d.label}</span>
-                  <span className="mx-2 inline-block h-1 w-1 rounded-full bg-[#0A0909]/30 align-middle" aria-hidden />
-                  <span className="font-heading text-sm font-normal leading-snug text-[#0A0909] md:text-base">{d.title}</span>
-                </p>
-                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#0A0909]/85">{d.body}</p>
+              <div className="flex min-w-0 flex-1 gap-3 pb-1 sm:gap-4">
+                <span className="w-14 shrink-0 pt-0.5 text-xs font-semibold text-[#0A0909]/55 sm:w-20">{d.label}</span>
+                <div className="min-w-0 flex-1">
+                  <p className="font-heading text-sm font-normal leading-snug text-[#0A0909] md:text-base">{d.title}</p>
+                  <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#0A0909]/85">{d.body}</p>
+                </div>
               </div>
             </div>
           ))}

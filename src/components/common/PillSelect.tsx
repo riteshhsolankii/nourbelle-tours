@@ -12,10 +12,12 @@ type Props = {
   label?: string;
   ariaLabel?: string;
   className?: string;
+  /** When set, renders a hidden input so the value participates in form submission. */
+  name?: string;
 };
 
 /** Branded pill-style dropdown (matches the filter bar / home quick-facts pattern) for single-select fields. */
-export function PillSelect({ value, options, onChange, label, ariaLabel, className }: Props) {
+export function PillSelect({ value, options, onChange, label, ariaLabel, className, name }: Props) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const selected = options.find((o) => o.value === value);
@@ -39,6 +41,7 @@ export function PillSelect({ value, options, onChange, label, ariaLabel, classNa
   return (
     <div ref={rootRef} className={["relative", className ?? ""].join(" ")}>
       {label ? <label className="mb-1.5 block text-xs font-medium text-[#0A0909]">{label}</label> : null}
+      {name ? <input type="hidden" name={name} value={value} readOnly /> : null}
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
@@ -54,7 +57,7 @@ export function PillSelect({ value, options, onChange, label, ariaLabel, classNa
       {open ?
         <ul
           role="listbox"
-          className="absolute left-0 right-0 top-full z-50 mt-1.5 max-h-[250px] overflow-y-auto rounded-xl border border-zinc-200 bg-white py-1 shadow-lg ring-1 ring-black/5"
+          className="absolute left-0 right-0 top-full z-[999] mt-1.5 max-h-[250px] overflow-y-auto rounded-xl border border-zinc-200 bg-white py-1 shadow-lg ring-1 ring-black/5"
         >
           {options.map((opt) => {
             const isSelected = opt.value === value;

@@ -279,14 +279,14 @@ export function TourPackageCard({
       <Link
         href={tour.href}
         className={[
-          "group flex h-full rounded-[10px] sm:rounded-[20px] border border-[#0A090926] bg-white sm:p-3.5 transition hover:border-[#41736D]/35 hover:shadow-[0_4px_20px_rgba(65,115,109,0.12)]",
-          isRow ? "flex-col gap-3 sm:flex-row sm:gap-5" : "flex-col",
+          "group flex h-full rounded-[10px] sm:rounded-[20px] border border-[#0A090926] bg-white transition hover:border-[#41736D]/35 hover:shadow-[0_4px_20px_rgba(65,115,109,0.12)]",
+          isRow ? "flex-col gap-3 sm:flex-row sm:gap-5 sm:p-3.5" : "flex-col",
         ].join(" ")}
       >
         <div className={["relative w-full", isRow ? "sm:w-64 sm:shrink-0" : ""].join(" ")}>
           <div
             className={[
-              "relative w-full overflow-hidden rounded-[10px] sm:rounded-2xl bg-zinc-100",
+              "relative w-full overflow-hidden rounded-[10px] sm:rounded-[20px] bg-zinc-100",
               isRow ? "aspect-[3/2] sm:aspect-auto sm:h-full" : "aspect-[3/2]",
             ].join(" ")}
           >
@@ -326,7 +326,12 @@ export function TourPackageCard({
             </span>
           }
         </div>
-        <div className="flex flex-1 flex-col p-2.5 pt-4 sm:px-0 sm:pb-1 md:pt-3 lg:pt-5">
+        <div
+          className={[
+            "flex flex-1 flex-col p-2.5 pt-4 md:pt-3 lg:pt-5",
+            isRow ? "sm:px-0 sm:pb-1" : "sm:px-3.5 sm:pb-3.5",
+          ].join(" ")}
+        >
           {isRow ?
             <span className="mb-2 inline-flex w-fit items-center rounded-full bg-[#0A3B37] px-3 py-1.5 text-[10px] font-semibold text-white sm:text-xs">
               {dayBadge}

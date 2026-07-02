@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FormCheckbox } from "@/components/common/FormCheckbox";
-import { IconChevronDown } from "@/components/layout/icons";
+import { PillSelect } from "@/components/common/PillSelect";
 import { CustomizeTourDatePicker } from "@/components/tour-detail/CustomizeTourDatePicker";
 
 const COUNTRY_OPTIONS = [
@@ -32,8 +32,21 @@ const PHONE_CODE_OPTIONS = ["+1", "+44", "+20", "+61", "+49", "+33"] as const;
 
 const inputClass =
   "h-11 w-full rounded-lg border border-[#E0E0E0] px-3 text-xs sm:text-sm text-[#0A0909] outline-none transition placeholder:text-[#0A0909]/45 focus:border-[#41736D]";
-const selectClass =
-  "h-11 appearance-none rounded-lg border border-[#E0E0E0] bg-white px-3 pr-9 text-xs sm:text-sm text-[#0A0909] outline-none transition focus:border-[#41736D]";
+
+const NATIONALITY_SELECT_OPTIONS = [
+  { value: "", label: "Select your nationality" },
+  ...NATIONALITY_OPTIONS.map((n) => ({ value: n, label: n })),
+];
+
+const PHONE_CODE_SELECT_OPTIONS = [
+  { value: "", label: "Country Code" },
+  ...PHONE_CODE_OPTIONS.map((code) => ({ value: code, label: code })),
+];
+
+const CABIN_SELECT_OPTIONS = [
+  { value: "", label: "Cabin number" },
+  ...Array.from({ length: 12 }, (_, i) => ({ value: String(i + 1), label: `Cabin ${i + 1}` })),
+];
 
 export type RequestCustomTourFormProps = {
   customizeMinFrom: string;
@@ -122,42 +135,22 @@ function BlogTourForm({
       : null}
       <input required name="name" placeholder="Name" className={inputClass} />
       <input required type="email" name="email" placeholder="E-mail" className={inputClass} />
-      <div className="relative">
-        <select
-          name="nationality"
-          value={nationality}
-          onChange={(e) => setNationality(e.target.value)}
-          className={`${selectClass} w-full`}
-          aria-label="Nationality"
-          required
-        >
-          <option value="">Select your nationality</option>
-          {NATIONALITY_OPTIONS.map((n) => (
-            <option key={n} value={n}>
-              {n}
-            </option>
-          ))}
-        </select>
-        <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 size-2.5 -translate-y-1/2 text-[#0A0909]/50" />
-      </div>
+      <PillSelect
+        name="nationality"
+        value={nationality}
+        onChange={setNationality}
+        options={NATIONALITY_SELECT_OPTIONS}
+        ariaLabel="Nationality"
+      />
       <div className="flex gap-2">
-        <div className="relative w-[40%] shrink-0">
-          <select
-            name="phoneCode"
-            value={phoneCode}
-            onChange={(e) => setPhoneCode(e.target.value)}
-            className={`${selectClass} w-full`}
-            aria-label="Country code"
-          >
-            <option value="">Country Code</option>
-            {PHONE_CODE_OPTIONS.map((code) => (
-              <option key={code} value={code}>
-                {code}
-              </option>
-            ))}
-          </select>
-          <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 size-2.5 -translate-y-1/2 text-[#0A0909]/50" />
-        </div>
+        <PillSelect
+          name="phoneCode"
+          value={phoneCode}
+          onChange={setPhoneCode}
+          options={PHONE_CODE_SELECT_OPTIONS}
+          ariaLabel="Country code"
+          className="w-[40%] shrink-0"
+        />
         <input name="phone" type="tel" placeholder="Mobile" className={`${inputClass} min-w-0 flex-1`} />
       </div>
       <div className="grid grid-cols-2 gap-2">
@@ -237,23 +230,14 @@ export function RequestCustomTourForm({
           <input required name="name" placeholder="Name" className={inputClass} />
           <input required type="email" name="email" placeholder="E-mail" className={inputClass} />
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <label className="relative min-w-0">
-              <span className="sr-only">Country</span>
-              <select
-                name="country"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                className={`${selectClass} w-full`}
-                aria-label="Country"
-              >
-                {COUNTRY_OPTIONS.map((c) => (
-                  <option key={c.value} value={c.value}>
-                    {c.label}
-                  </option>
-                ))}
-              </select>
-              <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 size-2.5 -translate-y-1/2 text-[#0A0909]/50" />
-            </label>
+            <PillSelect
+              name="country"
+              value={country}
+              onChange={setCountry}
+              options={COUNTRY_OPTIONS}
+              ariaLabel="Country"
+              className="min-w-0"
+            />
             <input
               name="phone"
               type="tel"
@@ -269,24 +253,14 @@ export function RequestCustomTourForm({
               placeholder="Selected date"
               minDate={customizeMinFrom}
             />
-            <label className="relative min-w-0">
-              <span className="sr-only">Cabin number</span>
-              <select
-                name="cabin"
-                value={cabin}
-                onChange={(e) => setCabin(e.target.value)}
-                className={`${selectClass} w-full`}
-                aria-label="Cabin number"
-              >
-                <option value="">Cabin number</option>
-                {Array.from({ length: 12 }, (_, i) => (
-                  <option key={i + 1} value={String(i + 1)}>
-                    Cabin {i + 1}
-                  </option>
-                ))}
-              </select>
-              <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 size-2.5 -translate-y-1/2 text-[#0A0909]/50" />
-            </label>
+            <PillSelect
+              name="cabin"
+              value={cabin}
+              onChange={setCabin}
+              options={CABIN_SELECT_OPTIONS}
+              ariaLabel="Cabin number"
+              className="min-w-0"
+            />
           </div>
           <AdultsStepper adults={adults} setAdults={setAdults} />
           <textarea
