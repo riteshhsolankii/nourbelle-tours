@@ -35,7 +35,7 @@ export function ItineraryTimeline({ itinerary, placesToVisit }: Props) {
                 <TargetMarkerIcon />
               </span>
               <div className="flex min-w-0 flex-1 gap-3 pb-1 sm:gap-4">
-                <span className="w-14 shrink-0 pt-0.5 text-xs font-semibold text-[#0A0909]/55 sm:w-20">{d.label}</span>
+                <span className="w-14 shrink-0 pt-1 text-sm font-bold text-[#0A0909]/55 sm:w-20">{d.label}</span>
                 <div className="min-w-0 flex-1">
                   <p className="text-[13px] font-semibold leading-snug text-[#0A0909] sm:text-[15px]">{d.title}</p>
                   <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#0A0909]/85">{truncateToWords(d.body, 12)}</p>

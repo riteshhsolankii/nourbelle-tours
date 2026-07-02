@@ -145,8 +145,8 @@ export function MultiDayTourDetailLayout({ detail }: Props) {
       </div>
       <div className="min-w-0">
         <GallerySection images={images} onOpenLightbox={openLightbox} />
-        <div className="mt-6">
-          <TourMap placesToVisit={detail.placesToVisit} aspectClassName="aspect-[16/9]" />
+        <div className="mt-3">
+          <TourMap placesToVisit={detail.placesToVisit} aspectClassName="aspect-[21/9]" />
         </div>
       </div>
     </div>
