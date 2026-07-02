@@ -175,7 +175,7 @@ export function MultiDayTourDetailLayout({ detail }: Props) {
                     <div>
                       <div className="mb-8 pb-8 border-b border-[#0A09091A]">{itineraryAndGalleryBlock}</div>
                       <p className="text-xs sm:text-sm leading-relaxed text-[#0A0909]/85">{detail.overviewIntro}</p>
-                      <div className="mt-6 grid gap-4 md:grid-cols-3 md:gap-6">
+                      <div className="mt-6 grid gap-4 md:grid-cols-2 md:gap-6">
                         <div className="rounded-xl border border-[#0A09091A] bg-white p-5 md:p-6">
                           <h3 className="font-heading text-base font-bold text-[#0A0909] md:text-lg">Tour Highlights</h3>
                           <ul className="mt-4 space-y-3">
@@ -189,9 +189,7 @@ export function MultiDayTourDetailLayout({ detail }: Props) {
                         </div>
                         <InclusionCards variant="inclusions" inclusions={detail.inclusions} />
                         <InclusionCards variant="exclusions" exclusions={detail.exclusions} />
-                        <div className="md:col-span-3">
-                          <WhyTravelersLoveCard highlights={detail.highlights} reviewCards={detail.reviewCards} />
-                        </div>
+                        <WhyTravelersLoveCard highlights={detail.highlights} reviewCards={detail.reviewCards} />
                       </div>
                     </div>
                   : null}
@@ -481,7 +479,7 @@ export function MultiDayTourDetailLayout({ detail }: Props) {
                     </FormCheckbox>
                     <button
                       type="submit"
-                      className="flex h-11 w-full items-center justify-center gap-2 rounded-full bg-[#41736D] font-heading text-xs sm:text-sm font-semibold text-white transition hover:bg-[#365e59]"
+                      className="flex h-11 w-full items-center justify-center gap-2 rounded-full bg-[#B98B3E] font-heading text-xs sm:text-sm font-semibold text-white transition hover:bg-[#a67a34]"
                     >
                       Submit
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>

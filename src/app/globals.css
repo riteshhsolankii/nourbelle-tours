@@ -45,3 +45,11 @@ h6 {
     scroll-behavior: auto;
   }
 }
+
+@layer utilities {
+  @media (min-width: 64rem) {
+    .lg\:top-\[89px\] {
+      top: 83px;
+    }
+  }
+}
