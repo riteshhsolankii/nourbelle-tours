@@ -23,7 +23,7 @@ type Props = {
 
 export function HotelsSection({ hotelCards, accommodationItems, accommodation, sectionScrollClass }: Props) {
   return (
-    <section id="tour-hotels" className={`${sectionScrollClass} mt-8 pt-8 sm:mt-10 sm:pt-10 border-t border-[#0A09091A]`}>
+    <section id="tour-hotels" className={sectionScrollClass}>
       <h2 className="font-heading text-lg font-bold text-[#0A0909] md:text-[22px]">Hotels</h2>
       {hotelCards && hotelCards.length > 0 ?
         <div className="mt-4 grid gap-4 sm:grid-cols-2 md:grid-cols-3 md:mt-6">

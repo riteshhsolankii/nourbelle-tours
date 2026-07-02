@@ -306,6 +306,11 @@ export const multiDayTourDetails: Record<string, TourPackagePageDetail> = {
       { src: "/multi-day-tours/egypt-tour/luxor.webp", alt: "8 Day Legends of Egypt Tour — Luxor" },
       { src: "/multi-day-tours/egypt-tour/aswan.webp", alt: "8 Day Legends of Egypt Tour — Aswan" },
     ],
+    hotelCards: [
+      { name: "Cairo City Hotel", imageSrc: "/destinations/cairo.webp", imageAlt: "Hotel in Cairo near Islamic Cairo", stars: 4, location: "Cairo" },
+      { name: "Nile-View Hotel, Luxor", imageSrc: "/destinations/luxor.webp", imageAlt: "Hotel overlooking Luxor temples", stars: 4, location: "Luxor" },
+      { name: "Aswan Corniche Hotel", imageSrc: "/multi-day-tours/egypt-tour/aswan.webp", imageAlt: "Hotel on the Aswan Corniche", stars: 4, location: "Aswan" },
+    ],
   }),
 };
 

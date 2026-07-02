@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { FormCheckbox } from "@/components/common/FormCheckbox";
-import { IconChevronDown } from "@/components/layout/icons";
+import { PillSelect } from "@/components/common/PillSelect";
 
 const countryOptions = [
   "Egypt",
@@ -18,6 +19,11 @@ const countryOptions = [
   "Australia",
   "Other",
 ] as const;
+
+const COUNTRY_SELECT_OPTIONS = [
+  { value: "", label: "Enter your country" },
+  ...countryOptions.map((c) => ({ value: c, label: c })),
+];
 
 function ArrowRight() {
   return (
@@ -57,6 +63,8 @@ function Field({
 }
 
 export function TravelAgentRegistrationSection() {
+  const [country, setCountry] = useState("");
+
   return (
     <section className="px-4 sm:px-5 md:scroll-mt-32 py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20"
     >
@@ -90,28 +98,14 @@ export function TravelAgentRegistrationSection() {
                 type="tel"
               />
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="ta-country" className="text-xs font-medium text-[#0A0909] md:text-sm">
-                  Country
-                </label>
-                <div className="relative">
-                  <select
-                    id="ta-country"
-                    name="country"
-                    required
-                    defaultValue=""
-                    className={`${fieldClass} appearance-none pr-10`}
-                  >
-                    <option value="" disabled>
-                      Enter your country
-                    </option>
-                    {countryOptions.map((c) => (
-                      <option key={c} value={c}>
-                        {c}
-                      </option>
-                    ))}
-                  </select>
-                  <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 size-2.5 -translate-y-1/2 text-[#0A090980]" />
-                </div>
+                <span className="text-xs font-medium text-[#0A0909] md:text-sm">Country</span>
+                <PillSelect
+                  name="country"
+                  value={country}
+                  onChange={setCountry}
+                  options={COUNTRY_SELECT_OPTIONS}
+                  ariaLabel="Country"
+                />
               </div>
               <Field
                 id="ta-business-id"

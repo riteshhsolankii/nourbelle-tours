@@ -251,8 +251,8 @@ export function PopularPackagesSection({
         />
       ) : null}
 
-      <div className="mt-4 md:mt-6 flex items-center justify-between gap-3">
-        <p className="text-xs sm:text-sm text-[#0A0909]/60">
+      <div className="mt-4 md:mt-6 flex items-center justify-between gap-3 border-t border-[#0A09091A] pt-4">
+        <p className="text-xs sm:text-sm font-bold text-[#0A0909]">
           Showing {visibleTours.length} tours
         </p>
         <div className="flex shrink-0 items-center gap-1.5">

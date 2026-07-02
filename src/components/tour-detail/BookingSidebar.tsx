@@ -26,8 +26,8 @@ export function BookingSidebar({ detail, travelDate, onTravelDateChange, minTrav
   const [travelers, setTravelers] = useState("1");
 
   return (
-    <div className="overflow-hidden rounded-[10px] sm:rounded-[20px] border border-[#0A090926] bg-white">
-      <div className="bg-[#0A3B37] px-5 py-4 text-white">
+    <div className="rounded-[10px] sm:rounded-[20px] border border-[#0A090926] bg-white">
+      <div className="rounded-t-[10px] sm:rounded-t-[20px] bg-[#0A3B37] px-5 py-4 text-white">
         {detail.sidebar.priceWas != null && detail.sidebar.priceWas > detail.sidebar.price ?
           <span className="text-xs font-medium text-white/60 line-through">From {formatUsdFull(detail.sidebar.priceWas)}</span>
         : <span className="text-xs font-medium text-white/70">From</span>}

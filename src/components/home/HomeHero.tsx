@@ -127,7 +127,7 @@ export function HomeHero({
       </div>
       {trustStats && trustStats.length > 0 ?
         <div className="w-full bg-[#0A3B37]">
-          <div className="mx-auto flex w-full max-w-[1390px] flex-wrap items-center justify-center gap-x-8 gap-y-3 px-4 py-6 sm:px-5 sm:py-7 sm:justify-between">
+          <div className="mx-auto flex w-full max-w-[1390px] flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 py-3 sm:px-5 sm:py-4 sm:justify-between">
             {trustStats.map((stat, i) => {
               const StatIcon = STAT_ICONS[i % STAT_ICONS.length];
               return (

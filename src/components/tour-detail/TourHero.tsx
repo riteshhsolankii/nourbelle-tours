@@ -107,7 +107,7 @@ export function TourHero({ detail }: Props) {
         : null}
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+      <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-xl bg-[#F4F4F5] px-4 py-3">
         <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#0A0909]/80 sm:text-[13px]">
           <DurationIcon />
           {detail.sidebar.durationInfo}
