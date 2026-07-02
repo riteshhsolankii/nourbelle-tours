@@ -66,9 +66,9 @@ export function TourPackagesCategoriesSection({
             <li key={card.title}>
               <Link
                 href={card.href}
-                className="group flex flex-col rounded-[10px] md:rounded-[20px] border border-[#0A090926] bg-white md:p-2.5 lg:p-3.5 transition hover:border-[#41736D]/35 hover:shadow-[0_4px_20px_rgba(65,115,109,0.12)]"
+                className="group flex flex-col overflow-hidden rounded-[10px] bg-white transition hover:shadow-[0_4px_20px_rgba(65,115,109,0.12)] md:rounded-[20px]"
               >
-                <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[10px] md:rounded-[20px] bg-zinc-100">
+                <div className="relative aspect-[3/2] w-full overflow-hidden bg-zinc-100">
                   <Image
                     src={card.imageSrc}
                     alt={card.imageAlt}
@@ -80,11 +80,11 @@ export function TourPackagesCategoriesSection({
                     className="absolute inset-0 bg-gradient-to-t from-[#0A0909B2]/20 to-[#0A0909]"
                     aria-hidden
                   />
-                  <div className="absolute inset-0 flex flex-col items-start justify-start p-3 md:p-4 lg:p-5">
+                  <div className="absolute inset-0 flex flex-col items-start justify-between p-3 md:p-4 lg:p-5">
                     <h3 className="font-heading text-xs md:text-base lg:text-xl xl:text-[22px] font-bold text-white">
                       {card.title}
                     </h3>
-                    <span className="mt-2 inline-flex gap-2 items-center rounded-full bg-white font-heading px-6 py-2.5 text-[12px] sm:text-sm font-semibold text-[#0A0909] transition group-hover:text-[#41736D]">
+                    <span className="inline-flex gap-2 items-center rounded-full bg-white font-heading px-6 py-2.5 text-[12px] sm:text-sm font-semibold text-[#0A0909] transition group-hover:text-[#41736D]">
                       {cardCtaLabel}
                       <span className="hidden lg:inline-flex">
                         <ArrowRight />
